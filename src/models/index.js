@@ -11,6 +11,7 @@ const sequelize = new Sequelize(
  
 const models = {
   Country: sequelize.import('./country'),
+  All: sequelize.import('./all'),
 };
  
 Object.keys(models).forEach(key => {

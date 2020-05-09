@@ -3,12 +3,13 @@ import express from 'express';
 import cors from 'cors';
 
 import models, { sequelize } from './models';
-
-const countries = require('./countries.json');
+import routes from './routes';
 
 const app = express();
 
-app.use(cors());
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use(async (req, res, next) => {
   req.context = {
@@ -18,19 +19,12 @@ app.use(async (req, res, next) => {
 });
 
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
+app.use(cors());
 
-app.get('/sync', async (req, res) => {
-	for (var i = 0; i < countries.length; i++) {
-		const country = await req.context.models.Country.create({
-			name: countries[i]["name"],
-			prevod: countries[i]["prevod"],
-			slug: countries[i]["url"],
-		});
-	}
-});
+app.use('/api/country', routes.country);
+app.use('/api/all', routes.all);
+
+
 
 sequelize.sync().then(() => {
 	app.listen(process.env.PORT, () =>
