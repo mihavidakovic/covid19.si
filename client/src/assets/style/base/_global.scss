@@ -1,0 +1,22 @@
+body {
+	background-color: #F3FAFF;
+	font-family: "Work Sans";
+	box-sizing: border-box;
+	
+	*, *:before, *:after {
+		margin: 0;
+		padding: 0;
+		box-sizing: inherit;
+	}
+
+	a {
+		color: rgba(#fff, 0.95);
+		text-decoration: none;
+		cursor: pointer;
+		transition: $global-transition;
+		
+		&:hover {
+			color: #FFF;
+		}
+	}
+}
