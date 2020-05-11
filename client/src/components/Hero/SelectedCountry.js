@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 
-function SelectedCountry(){
+function SelectedCountry(props){
 
 	// let countryInfo = useContext(currentCountry);
 
@@ -14,7 +14,7 @@ function SelectedCountry(){
 
 	useEffect(() => {
 		function getAllData() {
-			fetch(process.env.REACT_APP_API_URL + "/country/36/get")
+			fetch(process.env.REACT_APP_API_URL + "/country/"+ props.id +"/get")
 				.then( response => {
 					if (!response.ok) { throw response }
 					return response.json()  //we only get here if there is no error
@@ -39,7 +39,7 @@ function SelectedCountry(){
 
 		getAllData();
 
-	}, [])
+	}, [props])
 	let country = countryInfo.selectedCountry;
 	let data = countryData.countryData;
 

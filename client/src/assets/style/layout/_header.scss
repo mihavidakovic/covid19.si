@@ -131,9 +131,10 @@
 		}
 		
 		.Hedaer--main__map {
-			background-color: rgba(#fff, 0.1);
 			margin-right: 2rem;
 			flex-shrink: 0;
+			border-radius: $global-radius;
+			overflow: hidden;
 			
 			@include mq("phone") {
 				height: 200px;
@@ -143,17 +144,36 @@
 			}
 
 			@include mq("tablet") {
-				height: 300px;
+				height: 500px;
 				width: 65%;
 				margin-bottom: 0;
 				margin-right: 2rem;
 			}
 
 			@include mq("desktop") {
-				height: 300px;
+				height: 500px;
 				width: 65%;
 				margin-bottom: 0;
 				margin-right: 2rem;
+			}
+
+			.map__country {
+				fill: rgba(#fff, 0.6);
+				stroke-width: 0px;
+				transition: 100ms all ease-in-out;
+				
+				&.active {
+					fill: #fff;
+					
+					&:hover {
+						fill: #fff;
+					}
+				}
+				
+				&:hover {
+					fill: rgba(#fff, 0.8);
+					cursor: pointer;
+				}
 			}
 		}
 
