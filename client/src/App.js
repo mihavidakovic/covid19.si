@@ -1,11 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAdjust } from '@fortawesome/free-solid-svg-icons'
 
 
 import './assets/style/style.scss';
 
+import SelectedCountry from './components/SelectedCountry';
+
 function App() {
+
+	let CurrentCountry = React.createContext({country: {_id: 32}})
+
+	useEffect(() => {
+		function getAllData() {
+		}
+
+		getAllData();
+
+	}, [])
+
+
 	return (
 		<div className="App">
 			<header className="Header">
@@ -36,39 +50,15 @@ function App() {
 
 					<div className="Hedaer--main">
 						<div className="Hedaer--main__map">
+							<select>
+								<option value="32">32</option>
+								<option value="111">111</option>
+								<option value="121">121</option>
+							</select>
 						</div>
-						<div className="Hedaer--main__country">
-							<div className="country--top">
-								<img src="https://disease.sh/assets/img/flags/it.png" className="country--top__flag" />
-								<span className="country--top__name">Italija</span>
-							</div>
-							<div className="country--info">
-								<div className="country--info__point">
-									<span className="point--title">Vseh primerov</span>
-									<span className="point--number">4,097,513</span>
-								</div>
-								<div className="country--info__point">
-									<span className="point--title">Aktivnih primerov</span>
-									<span className="point--number">106,103</span>
-								</div>
-								<div className="country--info__point">
-									<span className="point--title">Kritičnih</span>
-									<span className="point--number">1,214</span>
-								</div>
-								<div className="country--info__point">
-									<span className="point--title">Okrevanih</span>
-									<span className="point--number">64,928</span>
-								</div>
-								<div className="country--info__point">
-									<span className="point--title">Testiranih</span>
-									<span className="point--number">150,401</span>
-								</div>
-								<div className="country--info__point">
-									<span className="point--title">Smrti</span>
-									<span className="point--number">141,310</span>
-								</div>
-							</div>
-						</div>
+						<CurrentCountry.Provider>
+							<SelectedCountry />
+						</CurrentCountry.Provider>
 					</div>
 				</div>
 			</header>
