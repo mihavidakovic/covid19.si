@@ -4,6 +4,8 @@ function SelectedCountry(props){
 
 	// let countryInfo = useContext(currentCountry);
 
+	let [isLoading, setIsLoading] = useState(true);
+
 	let [countryInfo, setCountryInfo] = useState({
 		selectedCountry: {}
 	});
@@ -12,47 +14,61 @@ function SelectedCountry(props){
 		countryData: {}
 	});
 
-	useEffect(() => {
-		function getAllData() {
-			fetch(process.env.REACT_APP_API_URL + "/country/"+ props.id +"/get")
-				.then( response => {
-					if (!response.ok) { throw response }
-					return response.json()  //we only get here if there is no error
-				})
-				.then( json => {
-					setCountryInfo({selectedCountry: json[0]})
-					console.log(json[0])
-					const url = 'https://disease.sh/v2/countries/'+ json[0].name +'?yesterday=false&strict=true';
-					return fetch(url)
-				})
-				.then(response => {
-					return response.json();
-				})
-				.then(data => {
-					setCountryData({countryData: data})
-					return false;
-				})
-				.catch( err => {
-					console.log(err)
-				});
-		}
+	function getAllData(id) {
+		fetch(process.env.REACT_APP_API_URL + "/country/"+ id +"/get")
+			.then( response => {
+				if (!response.ok) { throw response }
+				return response.json()  //we only get here if there is no error
+			})
+			.then( json => {
+				setCountryInfo({selectedCountry: json[0]})
+				console.log(json[0])
+				const url = 'https://disease.sh/v2/countries/'+ json[0].name +'?yesterday=false&strict=true';
+				return fetch(url)
+			})
+			.then(response => {
+				return response.json();
+			})
+			.then(data => {
+				setCountryData({countryData: data})
+				setIsLoading(false)
+				return false;
+			})
+			.catch( err => {
+				console.log(err)
+			});
+	}
 
-		getAllData();
+	useEffect(() => {
+
+		getAllData(props.id);
+
 
 	}, [props])
+
 	let country = countryInfo.selectedCountry;
 	let data = countryData.countryData;
+	let loading = isLoading;
 
 
 	return (
 
 		<div className="Hedaer--main__country">
 			<div className="country--top">
-				<div className="country--top__flag">
-					<img src={data.countryInfo ? data.countryInfo.flag : ''} />
-					<span className={data.countryInfo ? '' : 'loading-content'}></span>
-				</div>
-				<span className="country--top__name">{country.prevod ? country.prevod : <span className="loading-content"></span>}</span>
+				{country ? 
+					<>
+						<div className="country--top__flag">
+							<img src={data.countryInfo ? data.countryInfo.flag : ''} />
+							<span className={data.countryInfo ? '' : 'loading-content'}></span>
+						</div>
+						<span className="country--top__name">{country.prevod ? country.prevod : <span className="loading-content"></span>}</span>
+					</> : 
+					<>
+						<div className="country--top__flag">
+							<img src="/img/flags/unknown.png" />
+						</div>
+						<span className="country--top__name">Ni podatka</span>
+					</>}
 			</div>
 			<div className="country--info">
 				<div className="country--info__point">

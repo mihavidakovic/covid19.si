@@ -136,6 +136,13 @@
 			border-radius: $global-radius;
 			overflow: hidden;
 			
+			&:hover {
+				box-shadow: 
+					0 4px 8px 0 rgba(#000, 0.1),
+					0 0 2px 0 rgba(#000, 0.06),
+					0 0 1px 0 rgba(#000, 0.04);
+			}
+			
 			@include mq("phone") {
 				height: 200px;
 				width: 100%;
@@ -144,14 +151,14 @@
 			}
 
 			@include mq("tablet") {
-				height: 500px;
+				height: 450px;
 				width: 65%;
 				margin-bottom: 0;
 				margin-right: 2rem;
 			}
 
 			@include mq("desktop") {
-				height: 500px;
+				height: 450px;
 				width: 65%;
 				margin-bottom: 0;
 				margin-right: 2rem;
@@ -161,6 +168,10 @@
 				fill: rgba(#fff, 0.6);
 				stroke-width: 0px;
 				transition: 100ms all ease-in-out;
+				
+				&[data-id="010"] {
+					display: none;
+				}
 				
 				&.active {
 					fill: #fff;

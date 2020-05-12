@@ -1,0 +1,112 @@
+.dataBoxes {
+	display: flex;
+	flex-flow: row;
+	flex-wrap: wrap;
+	
+	.dataBox {
+		background-color: #fff;
+		padding: 1.5rem;
+		margin-bottom: 1rem;
+		border-radius: 4px;
+		box-shadow: 
+			0 4px 8px 0 rgba(#000, 0.04),
+			0 0 2px 0 rgba(#000, 0.06),
+			0 0 1px 0 rgba(#000, 0.04);
+		position: relative;
+		display: flex;
+		flex-flow: column;
+		overflow: hidden;
+
+		@include mq("phone") {
+			width: calc(100%);
+		}
+
+		@include mq("tablet") {
+			width: calc(50% - 1rem);
+			
+			&:not(:nth-child(4n)) {
+				margin-right: 1rem;
+			}
+		}
+
+		@include mq("desktop") {
+			width: calc(25% - 1rem);
+			
+			&:not(:nth-child(4n)) {
+				margin-right: 1rem;
+			}
+		}
+				
+		.dataBox__icon {
+			position: absolute;
+			top: 1.2rem;
+			right: 1.2rem;
+			font-size: rem-calc(100);
+			z-index: 1;
+			color: rgba(#000, 0.03);
+		}
+
+		.dataBox__overline {
+			color: $main-color-900;
+			font-size: rem-calc(11);
+			font-weight: 400;
+			letter-spacing: 3px;
+			text-transform: uppercase;
+			margin-bottom: 0.5rem;
+		}
+
+		.dataBox__number {
+			font-size: rem-calc(28);
+			font-weight: 800;
+			color: $main-color-1000;
+			
+			.loading-content {
+				height: 33px;
+				display: block;
+				background-color: rgba($main-color-900, 0.5);
+				border-radius: $global-radius;
+				animation: loadingPulse 1.5s ease-in-out infinite;
+			}
+		}
+
+		.dataBox__divider {
+			width: 16px;
+			height: 1px;
+			background-color: rgba(#000, 0.1);
+			margin: 1rem 0;
+		}
+
+		.dataBox__overline--small {
+			color: rgba($main-color-900, 0.8);
+			font-size: rem-calc(11);
+			font-weight: 400;
+			letter-spacing: 3px;
+			text-transform: uppercase;
+			margin-bottom: 0.3rem;
+		}
+
+		.dataBox__number-small {
+			font-size: rem-calc(16);
+			font-weight: 800;
+			color: $main-color-1000;
+			display: flex;
+			flex-flow: row;
+
+			.loading-content {
+				height: 19px;
+				display: block;
+				background-color: rgba($main-color-900, 0.5);
+				border-radius: $global-radius;
+				animation: loadingPulse 1.5s ease-in-out infinite;
+			}
+			
+			&.positive {
+				color: rgba(20, 200, 40, 1);
+			}
+
+			&.negative {
+				color: rgba(200, 20, 40, 1);
+			}
+		}
+	}
+}

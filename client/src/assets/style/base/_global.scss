@@ -1,6 +1,6 @@
 body {
-	background-color: #F3FAFF;
-	font-family: "Work Sans";
+	background-color: $bg-color;
+	font-family: "Work Sans" !important;
 	box-sizing: border-box;
 	
 	*, *:before, *:after {

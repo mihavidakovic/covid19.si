@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import { geoMercator, geoPath } from "d3-geo"
 import { feature } from "topojson-client"
 
 import { ZoomContainer } from "./zoom-container";
 import { Stage } from "./stage";
+import { ThemeContext } from '../Hero/Hero.js';
 
 const world = require("./world-50m.json");
 
@@ -11,15 +12,17 @@ const WorldMap = (props) => {
   const mercator = geoMercator();
   const project = geoPath().projection(mercator);
 
-  let [activeCountry, setActiveCountry] = useState({id: 0}) 
 
   useEffect(() => {
-    setActiveCountry({id: props.id})
-  }, [props])
+    console.log(project)
+  }, [])
 
-  let country = props.id.selectedId;
+  function handleChange(iso) {
+    // Here, we invoke the callback with the new value
+    props.onChange(iso);
+  }
 
-  console.log(props.id.selectedId)
+  let country = props.id;
 
   return (
     <Stage width="100%" height="100%">
@@ -34,7 +37,8 @@ const WorldMap = (props) => {
               stroke="#666666"
               strokeWidth={0.15}
               className={feature.properties.iso_n3 == country ? "map__country active" : "map__country"}
-              onClick={() => setActiveCountry({id: feature.properties.iso_n3})}
+              data-id={feature.properties.iso_n3}
+              onClick={() => handleChange(feature.properties.iso_n3)}
             />
           );
         })}

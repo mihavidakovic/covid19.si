@@ -1,0 +1,23 @@
+.All {
+	padding: 4rem 1rem;
+	
+	.All__heading {
+		display: flex;
+		flex-flow: row;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 1.5rem;
+		
+		h3 {
+			color: $main-color-1000;
+			font-size: rem-calc(34);
+			font-weight: 900;
+		}
+
+		span {
+			font-size: rem-calc(12);
+			color: rgba(#000, 0.5);
+		}
+
+	}
+}
