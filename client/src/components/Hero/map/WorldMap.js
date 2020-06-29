@@ -11,18 +11,33 @@ const world = require("./world-50m.json");
 const WorldMap = (props) => {
   const mercator = geoMercator();
   const project = geoPath().projection(mercator);
+  project.center = ([109, 109], [10, 10])
+
+  const [Position, setPosition] = useState({
+    x: 0,
+    y: 0
+  })
+
+  const [CountryName, setCountryName] = useState({
+    name: "slovenijaaa"
+  })
 
 
   useEffect(() => {
-    console.log(project)
   }, [])
 
-  function handleChange(iso) {
+  function handleChange(iso, countryName) {
     // Here, we invoke the callback with the new value
-    props.onChange(iso);
+    props.onChange(iso, countryName);
+  }
+
+  function handleNameChange(countryName) {
+    // Here, we invoke the callback with the new value
+    props.onChange(countryName);
   }
 
   let country = props.id;
+  let name = CountryName.name;
 
   return (
     <Stage width="100%" height="100%">
@@ -30,16 +45,18 @@ const WorldMap = (props) => {
         {world.features.map((feature, index) => {
           const d = project(feature);
           return (
-            <path
-              key={index}
-              d={d}
-              fill="#fff"
-              stroke="#666666"
-              strokeWidth={0.15}
-              className={feature.properties.iso_n3 == country ? "map__country active" : "map__country"}
-              data-id={feature.properties.iso_n3}
-              onClick={() => handleChange(feature.properties.iso_n3)}
-            />
+            <g key={index} className={feature.properties.iso_n3 == country ? "map__country active" : "map__country"}>
+              <path
+                d={d}
+                fill="#fff"
+                stroke="#666666"
+                strokeWidth={0.15}
+                data-id={feature.properties.iso_n3}
+                data-name={feature.properties.name}
+                onClick={() => handleChange(feature.properties.iso_n3, feature.properties.iso_n3)}
+              >
+              </path>
+            </g>
           );
         })}
       </ZoomContainer>

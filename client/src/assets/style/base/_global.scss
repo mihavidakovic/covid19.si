@@ -19,4 +19,83 @@ body {
 			color: #FFF;
 		}
 	}
+
+	.App {
+		
+		&.darkMode {
+			
+			.Header {
+				background: rgb(1,72,127);
+				background: -moz-linear-gradient(90deg, rgba(1,72,127,1) 0%, rgba(1,67,116,1) 100%);
+				background: -webkit-linear-gradient(90deg, rgba(1,72,127,1) 0%, rgba(1,67,116,1) 100%);
+				background: linear-gradient(90deg, rgba(1,72,127,1) 0%, rgba(1,67,116,1) 100%);
+				filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#01487f",endColorstr="#014374",GradientType=1);
+				
+				&.Header--big {
+					background: rgb(1,30,52);
+					background: -moz-linear-gradient(0deg, rgba(1,30,52,1) 0%, rgba(1,73,128,1) 100%);
+					background: -webkit-linear-gradient(0deg, rgba(1,30,52,1) 0%, rgba(1,73,128,1) 100%);
+					background: linear-gradient(0deg, rgba(1,30,52,1) 0%, rgba(1,73,128,1) 100%);
+					filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#011e34",endColorstr="#014980",GradientType=1);
+				}
+
+				.virus {
+					opacity: 0.2;
+				}
+
+				.Header--top {
+					
+					.Hedaer--top__right {
+						
+						.darkMode--toggle {
+							background-color: #FFF;
+							color: $main-color-1000;
+						}
+					}
+				}
+			}
+
+			.All {
+				background-color: darken($main-color-1000, 15%);
+				
+				.All__heading {
+					
+					h3 {
+						color: #FFF;
+					}
+
+					span {
+						color: rgba(#fff, 0.5);
+					}
+				}
+			}
+
+			.dataBoxes {
+				
+				.dataBox {
+					background-color: $main-color-1000;
+					
+					.dataBox__icon {
+						color: rgba(#fff, 0.02);
+					}
+
+					.dataBox__overline {
+						color: rgba(#fff, 0.5);
+					}
+
+					.dataBox__number {
+						color: #FFF;
+					}
+
+					.dataBox__divider {
+						background-color: rgba(#fff, 0.15);
+					}
+
+					.dataBox__overline--small {
+						color: rgba(#fff, 0.4);
+					}
+				}
+			}
+		}
+	}
 }

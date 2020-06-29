@@ -16,6 +16,7 @@
 		display: flex;
 		flex-flow: column;
 		overflow: hidden;
+		transition: $global-transition;
 
 		@include mq("phone") {
 			width: calc(100%);
@@ -105,7 +106,8 @@
 			}
 
 			&.negative {
-				color: rgba(200, 20, 40, 1);
+				color: red;
+				font-weight: bold;
 			}
 		}
 	}

@@ -1,0 +1,43 @@
+.All {
+	padding: 4rem 1rem;
+	transition: $global-transition;
+	
+	.All__heading {
+		display: flex;
+		flex-flow: row;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 1.5rem;
+		
+		@include mq("phone") {
+			flex-flow: column;
+		}
+
+		@include mq("tablet") {
+			flex-flow: row;
+		}
+
+		@include mq("desktop") {
+			flex-flow: row;
+		}
+				
+		h3 {
+			color: $main-color-1000;
+			font-size: rem-calc(34);
+			font-weight: 900;
+			transition: $global-transition;
+			margin-bottom: $global-margin / 2;
+
+			@include mq("desktop") {
+				margin-bottom: 0;
+			}
+		}
+
+		span {
+			font-size: rem-calc(12);
+			color: rgba(#000, 0.5);
+			transition: $global-transition;
+		}
+
+	}
+}

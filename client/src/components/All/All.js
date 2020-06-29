@@ -12,6 +12,7 @@ function All() {
 		deaths: 0,
 		todayDeaths: 0,
 		recovered: 0,
+		todayRecovered: 0,
 		active: 0,
 		critical: 0,
 		casesPerOneMillion: 0,
@@ -30,13 +31,13 @@ function All() {
 				return response.json()  //we only get here if there is no error
 			})
 			.then( json => {
-				console.log(json[0])
 				setData({
 					cases: json[0].cases,
 					todayCases: json[0].todayCases,
 					deaths: json[0].deaths,
 					todayDeaths: json[0].todayDeaths,
 					recovered: json[0].recovered,
+					todayRecovered: json[0].todayRecovered,
 					active: json[0].active,
 					critical: json[0].critical,
 					casesPerOneMillion: json[0].casesPerOneMillion,
@@ -58,7 +59,7 @@ function All() {
 			<div className="container">
 				<div className="All__heading">
 					<h3>Podatki za cel svet</h3>
-					<span>Osveženo: {moment(data.createdAt).format("DD.MM.YYYY h:mm")}</span>
+					<span>Osveženo: {moment(data.createdAt).format("DD.MM.YYYY H:mm")}</span>
 				</div>
 				<div className="dataBoxes">
 					<div className="dataBox">
@@ -82,7 +83,7 @@ function All() {
 						<span className="dataBox__number">{data.recovered > 0 ? data.recovered.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') : <span className="loading-content" style={{width: '94px'}}></span>}</span>
 						<div className="dataBox__divider"></div>
 						<span className="dataBox__overline--small">Danes</span>
-						<span className="dataBox__number-small negative">{data.todayRecovered > 0 ? '+' + data.todayRecovered.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') : <span className="loading-content" style={{width: '94px'}}></span>}</span>
+						<span className="dataBox__number-small positive">{data.todayRecovered > 0 ? '+' + data.todayRecovered.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') : <span className="loading-content" style={{width: '94px'}}></span>}</span>
 						<FontAwesomeIcon icon={faHandSparkles} className="dataBox__icon" />
 					</div>
 					<div className="dataBox">

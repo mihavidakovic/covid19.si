@@ -1,0 +1,93 @@
+.Hedaer--main__map {
+	margin-right: 2rem;
+	flex-shrink: 0;
+	border-radius: $global-radius;
+	overflow: hidden;
+	
+	&:hover {
+		box-shadow: 
+			0 4px 8px 0 rgba(#000, 0.1),
+			0 0 2px 0 rgba(#000, 0.06),
+			0 0 1px 0 rgba(#000, 0.04);
+	}
+	
+	@include mq("phone") {
+		height: 200px;
+		width: 100%;
+		margin-bottom: $global-margin * 2;
+		margin-right: 0;
+	}
+
+	@include mq("tablet") {
+		height: 450px;
+		width: 65%;
+		margin-bottom: 0;
+		margin-right: 2rem;
+	}
+
+	@include mq("desktop") {
+		height: 450px;
+		width: 65%;
+		margin-bottom: 0;
+		margin-right: 2rem;
+	}
+
+	.map__tooltip {
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 100;
+		background-color: #FFF;
+		padding: 0.5rem 1rem;
+		
+	}
+
+	.map__country {
+		position: relative;
+
+		path {
+			fill: rgba(#fff, 0.6);
+			stroke-width: 0px;
+			transition: 100ms all ease-in-out;
+			
+			&:after {
+				content: "okkoko";
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			
+			&[data-id="010"] {
+				display: none;
+			}
+			
+		}
+		
+		&.active {
+
+			path {
+				fill: #fff;
+			}
+			
+			&:hover {
+				path {
+					fill: #fff;
+				}
+			}
+		}
+		
+		&:hover {
+
+			path {
+				fill: rgba(#fff, 0.8);
+				cursor: pointer;
+			}
+		}
+
+		.map__country--text {
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+	}
+}
